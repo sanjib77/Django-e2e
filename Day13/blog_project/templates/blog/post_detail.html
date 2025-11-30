@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <div class="post">
+        <h1>{{ post.title }}</h1>
+        <p class="post-meta">
+            By <strong>{{ post.author.username }}</strong> on {{ post.created_at|date:"F d, Y H:i" }}
+            {% if post.updated_at != post.created_at %}
+                <br><em>Last updated: {{ post.updated_at|date:"F d, Y H:i" }}</em>
+            {% endif %}
+        </p>
+
+        <div style="margin: 20px 0; line-height: 1.8;">
+            {{ post.content|linebreaks }}
+        </div>
+
+        {% if user == post.author %}
+            <div style="margin-top: 20px;">
+                <a href="{% url 'edit_post' post.pk %}" class="btn">Edit</a>
+                <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'home' %}" class="btn btn-secondary">← Back to Home</a>
+{% endblock %}
