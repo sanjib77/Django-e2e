@@ -70,7 +70,7 @@ D) API
 ---
 
 ### Question 6 (1 point)
-True or False: PUT requests are used for partial updates to a resource.
+True or False: PUT requests are used for partial updates to a resource. (Hint: Consider the difference between PUT and PATCH)
 
 **Your Answer:** _____
 
