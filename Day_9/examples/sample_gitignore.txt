@@ -90,7 +90,6 @@ $RECYCLE.BIN/
 # ===========================================
 # Django Specific
 # ===========================================
-*.log
 local_settings.py
 db.sqlite3
 *.sqlite3
