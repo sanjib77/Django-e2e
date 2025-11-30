@@ -1,0 +1,31 @@
+{% extends 'greetings/base.html' %}
+
+{% block title %}Hello, {{ name }}!{% endblock %}
+
+{% block content %}
+    <div class="emoji">👋</div>
+    <h1>Hello, <span class="highlight">{{ name }}</span>!</h1>
+    <p>
+        Welcome to our Django application! This page demonstrates 
+        how to pass data from URL parameters to templates.
+    </p>
+    
+    <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+        <h3 style="margin-bottom: 1rem; color: #333;">🔍 How this works:</h3>
+        <ol style="color: #666; text-align: left; list-style-position: inside;">
+            <li>URL pattern: <code style="background: #e9ecef; padding: 0.2rem 0.5rem; border-radius: 3px;">hello/&lt;str:name&gt;/</code></li>
+            <li>View captures the <code style="background: #e9ecef; padding: 0.2rem 0.5rem; border-radius: 3px;">name</code> parameter</li>
+            <li>Passes it to the template via context</li>
+            <li>Template displays: <code style="background: #e9ecef; padding: 0.2rem 0.5rem; border-radius: 3px;">{% verbatim %}{{ name }}{% endverbatim %}</code></li>
+        </ol>
+    </div>
+    
+    <a href="{% url 'home' %}" class="cta-button">
+        ← Back to Home
+    </a>
+    
+    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #888;">
+        Try changing the name in the URL to see different greetings!<br>
+        Example: <code>/hello/YourName/</code>
+    </p>
+{% endblock %}
