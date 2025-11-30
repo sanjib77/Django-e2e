@@ -2,10 +2,11 @@
 API Views for Django REST Framework Tutorial
 Day 15: Django REST Framework Basics
 
-This file demonstrates three approaches:
+This file demonstrates four approaches:
 1. Function-based views
 2. Class-based APIViews
-3. ViewSets with Router
+3. Generic Views
+4. ViewSets with Router
 """
 
 from rest_framework import status, viewsets, generics
