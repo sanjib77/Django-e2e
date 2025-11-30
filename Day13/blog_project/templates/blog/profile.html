@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+    <h1>👤 My Profile</h1>
+
+    <div class="post">
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Member since:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+    </div>
+
+    <h2 style="margin-top: 30px;">📚 My Posts</h2>
+
+    {% for post in posts %}
+        <div class="post">
+            <h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
+            <p class="post-meta">{{ post.created_at|date:"F d, Y" }}</p>
+            <p>{{ post.content|truncatewords:20 }}</p>
+            <a href="{% url 'edit_post' post.pk %}" class="btn">Edit</a>
+            <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+        </div>
+    {% empty %}
+        <div class="post">
+            <p>You haven't written any posts yet. <a href="{% url 'create_post' %}">Write your first post!</a></p>
+        </div>
+    {% endfor %}
+{% endblock %}
