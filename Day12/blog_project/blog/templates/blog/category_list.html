@@ -1,0 +1,60 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Categories | My Blog{% endblock %}
+
+{% block extra_css %}
+<style>
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    .category-card {
+        background: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+    .category-card:hover {
+        transform: translateY(-3px);
+    }
+    .category-card h3 {
+        margin-bottom: 0.5rem;
+    }
+    .category-card h3 a {
+        color: #333;
+        text-decoration: none;
+    }
+    .category-card h3 a:hover {
+        color: #667eea;
+    }
+    .category-card p {
+        color: #777;
+        font-size: 0.9rem;
+    }
+    .post-count {
+        margin-top: 1rem;
+        color: #667eea;
+        font-weight: 500;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 style="margin-bottom: 1.5rem;">Categories</h1>
+
+<div class="category-grid">
+    {% for category in categories %}
+    <div class="category-card">
+        <h3><a href="{% url 'blog:post_list' %}?category={{ category.slug }}">{{ category.name }}</a></h3>
+        {% if category.description %}
+        <p>{{ category.description }}</p>
+        {% endif %}
+        <div class="post-count">{{ category.posts.count }} post{{ category.posts.count|pluralize }}</div>
+    </div>
+    {% empty %}
+    <p>No categories available yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

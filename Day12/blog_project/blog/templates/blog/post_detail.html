@@ -1,0 +1,179 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }} | My Blog{% endblock %}
+
+{% block extra_css %}
+<style>
+    .post-detail {
+        background: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .post-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+    }
+    .post-header h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+    .post-meta {
+        color: #777;
+        font-size: 0.9rem;
+    }
+    .post-meta span {
+        margin-right: 1.5rem;
+    }
+    .post-meta a {
+        color: #667eea;
+        text-decoration: none;
+    }
+    .post-content {
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+    .post-content p {
+        margin-bottom: 1rem;
+    }
+    .post-tags {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+    }
+    .tag {
+        background: #e0e7ff;
+        color: #667eea;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        text-decoration: none;
+        margin-right: 0.5rem;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+    .tag:hover {
+        background: #c7d2fe;
+    }
+    .related-posts {
+        background: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .related-posts h3 {
+        margin-bottom: 1rem;
+        color: #667eea;
+    }
+    .related-post-item {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #eee;
+    }
+    .related-post-item:last-child {
+        border-bottom: none;
+    }
+    .related-post-item a {
+        color: #333;
+        text-decoration: none;
+    }
+    .related-post-item a:hover {
+        color: #667eea;
+    }
+    .comments-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .comments-section h3 {
+        margin-bottom: 1rem;
+        color: #667eea;
+    }
+    .comment {
+        padding: 1rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+    .comment-author {
+        font-weight: bold;
+        color: #333;
+    }
+    .comment-date {
+        color: #777;
+        font-size: 0.85rem;
+    }
+    .comment-content {
+        margin-top: 0.5rem;
+    }
+    .back-link {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        color: #667eea;
+        text-decoration: none;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'blog:post_list' %}" class="back-link">← Back to all posts</a>
+
+<article class="post-detail">
+    <header class="post-header">
+        <h1>{{ post.title }}</h1>
+        <div class="post-meta">
+            <span>✍️ By {{ post.author.username }}</span>
+            <span>📅 {{ post.created_at|date:"F d, Y" }}</span>
+            <span>👁️ {{ post.views }} views</span>
+            {% if post.category %}
+            <span>📁 <a href="{% url 'blog:post_list' %}?category={{ post.category.slug }}">{{ post.category.name }}</a></span>
+            {% endif %}
+        </div>
+    </header>
+    
+    <div class="post-content">
+        {{ post.content|linebreaks }}
+    </div>
+    
+    {% if post.tags.all %}
+    <div class="post-tags">
+        <strong>Tags:</strong>
+        {% for tag in post.tags.all %}
+        <a href="{% url 'blog:post_list' %}?tag={{ tag.name }}" class="tag">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</article>
+
+{% if related_posts %}
+<div class="related-posts">
+    <h3>Related Posts</h3>
+    {% for related in related_posts %}
+    <div class="related-post-item">
+        <a href="{{ related.get_absolute_url }}">{{ related.title }}</a>
+        <span style="color: #777; font-size: 0.85rem;"> - {{ related.created_at|date:"M d, Y" }}</span>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="comments-section">
+    <h3>Comments ({{ comments.count }})</h3>
+    {% for comment in comments %}
+    <div class="comment">
+        <span class="comment-author">{{ comment.author_name }}</span>
+        <span class="comment-date">• {{ comment.created_at|date:"M d, Y H:i" }}</span>
+        <p class="comment-content">{{ comment.content }}</p>
+    </div>
+    {% empty %}
+    <p>No comments yet. Be the first to comment!</p>
+    {% endfor %}
+</div>
+{% endblock %}
