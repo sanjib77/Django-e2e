@@ -166,6 +166,7 @@ LIMIT 3;
 <summary>💡 Click to see solution</summary>
 
 ```sql
+-- Note: In production, id would typically be auto-generated
 INSERT INTO employees (id, name, department, salary, hire_date, manager_id)
 VALUES (11, 'Alex Thompson', 'Finance', 68000.00, CURRENT_DATE, NULL);
 ```

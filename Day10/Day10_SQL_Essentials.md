@@ -207,7 +207,7 @@ The `WHERE` clause filters records based on conditions.
 | Operator | Description              |
 |----------|--------------------------|
 | =        | Equal to                 |
-| <>  or != | Not equal to            |
+| `<>` or `!=` | Not equal to          |
 | >        | Greater than             |
 | <        | Less than                |
 | >=       | Greater than or equal    |
@@ -327,7 +327,7 @@ SELECT * FROM users LIMIT 5 OFFSET 5;
 
 **Combined with ORDER BY:**
 ```sql
--- Get top 3 oldest users
+-- Get top 3 users with highest age
 SELECT * FROM users ORDER BY age DESC LIMIT 3;
 ```
 
