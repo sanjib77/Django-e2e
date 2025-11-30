@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8 - HTML Example for Django Templates</title>
+    <style>
+        /* Basic CSS styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        nav a:hover {
+            text-decoration: underline;
+        }
+        
+        main {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        
+        .card h3 {
+            color: #0066cc;
+        }
+        
+        form {
+            max-width: 500px;
+            margin: 20px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+        
+        button {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #0052a3;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    =============================================
+    HEADER SECTION
+    =============================================
+    -->
+    <header>
+        <h1>My Blog Application</h1>
+        <p>Learning HTML for Django Templates</p>
+        
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts">Posts</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 
+    =============================================
+    MAIN CONTENT
+    =============================================
+    -->
+    <main>
+        <!-- Alert Messages Example -->
+        <div class="alert alert-success">
+            <strong>Success!</strong> Your post has been published.
+        </div>
+
+        <!-- Page Title -->
+        <h2>Welcome to Day 8: HTML Fundamentals</h2>
+        
+        <p>
+            This page demonstrates common HTML elements that you'll use
+            when building Django templates. Understanding these elements
+            is essential for web development.
+        </p>
+
+        <!-- 
+        =============================================
+        SECTION 1: TEXT ELEMENTS
+        =============================================
+        -->
+        <section>
+            <h3>1. Text Elements</h3>
+            
+            <div class="card">
+                <h4>Headings</h4>
+                <h1>Heading 1 (h1)</h1>
+                <h2>Heading 2 (h2)</h2>
+                <h3>Heading 3 (h3)</h3>
+                <h4>Heading 4 (h4)</h4>
+                <h5>Heading 5 (h5)</h5>
+                <h6>Heading 6 (h6)</h6>
+            </div>
+            
+            <div class="card">
+                <h4>Text Formatting</h4>
+                <p>This is a <strong>bold text</strong> using strong tag.</p>
+                <p>This is an <em>italic text</em> using em tag.</p>
+                <p>This is a <a href="https://example.com">hyperlink</a> using anchor tag.</p>
+                <p>This is <code>inline code</code> using code tag.</p>
+                <p>This is <mark>highlighted text</mark> using mark tag.</p>
+            </div>
+        </section>
+
+        <!-- 
+        =============================================
+        SECTION 2: LISTS
+        =============================================
+        -->
+        <section>
+            <h3>2. Lists</h3>
+            
+            <div class="card">
+                <h4>Unordered List (ul)</h4>
+                <ul>
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item with nested list:
+                        <ul>
+                            <li>Nested item 1</li>
+                            <li>Nested item 2</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h4>Ordered List (ol)</h4>
+                <ol>
+                    <li>Step one</li>
+                    <li>Step two</li>
+                    <li>Step three</li>
+                </ol>
+            </div>
+            
+            <div class="card">
+                <h4>Definition List (dl)</h4>
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>HyperText Markup Language</dd>
+                    
+                    <dt>CSS</dt>
+                    <dd>Cascading Style Sheets</dd>
+                    
+                    <dt>JS</dt>
+                    <dd>JavaScript</dd>
+                </dl>
+            </div>
+        </section>
+
+        <!-- 
+        =============================================
+        SECTION 3: FORMS (Most Important for Django!)
+        =============================================
+        -->
+        <section>
+            <h3>3. Forms (Essential for Django)</h3>
+            
+            <div class="card">
+                <h4>Registration Form Example</h4>
+                
+                <form method="POST" action="/register">
+                    <!-- In Django, you would add: {% csrf_token %} here -->
+                    
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" 
+                               placeholder="Enter your username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" 
+                               placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" 
+                               placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bio">Bio:</label>
+                        <textarea id="bio" name="bio" rows="4" 
+                                  placeholder="Tell us about yourself"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role">Role:</label>
+                        <select id="role" name="role">
+                            <option value="">Select a role</option>
+                            <option value="user">User</option>
+                            <option value="editor">Editor</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="terms" required>
+                            I agree to the Terms and Conditions
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Newsletter Preference:</label>
+                        <label>
+                            <input type="radio" name="newsletter" value="yes"> Yes, send me updates
+                        </label>
+                        <label>
+                            <input type="radio" name="newsletter" value="no" checked> No, thanks
+                        </label>
+                    </div>
+                    
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h4>Search Form Example</h4>
+                
+                <form method="GET" action="/search">
+                    <div class="form-group">
+                        <label for="query">Search:</label>
+                        <input type="text" id="query" name="q" 
+                               placeholder="Enter search terms">
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 
+        =============================================
+        SECTION 4: TABLES
+        =============================================
+        -->
+        <section>
+            <h3>4. Tables</h3>
+            
+            <div class="card">
+                <h4>Users Table</h4>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Alice Johnson</td>
+                            <td>alice@example.com</td>
+                            <td>Admin</td>
+                            <td>
+                                <a href="/users/1/edit">Edit</a> |
+                                <a href="/users/1/delete">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Bob Smith</td>
+                            <td>bob@example.com</td>
+                            <td>User</td>
+                            <td>
+                                <a href="/users/2/edit">Edit</a> |
+                                <a href="/users/2/delete">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Charlie Brown</td>
+                            <td>charlie@example.com</td>
+                            <td>Editor</td>
+                            <td>
+                                <a href="/users/3/edit">Edit</a> |
+                                <a href="/users/3/delete">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 
+        =============================================
+        SECTION 5: DJANGO TEMPLATE SYNTAX PREVIEW
+        =============================================
+        -->
+        <section>
+            <h3>5. Django Template Syntax Preview</h3>
+            
+            <div class="card">
+                <h4>This is how you'll write Django templates:</h4>
+                
+                <pre style="background-color: #f4f4f4; padding: 15px; overflow-x: auto;">
+&lt;!-- Display a variable --&gt;
+&lt;h1&gt;{{ page_title }}&lt;/h1&gt;
+&lt;p&gt;Welcome, {{ user.username }}!&lt;/p&gt;
+
+&lt;!-- Loop through items --&gt;
+&lt;ul&gt;
+{% for post in posts %}
+    &lt;li&gt;{{ post.title }} - {{ post.date }}&lt;/li&gt;
+{% empty %}
+    &lt;li&gt;No posts available.&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+
+&lt;!-- Conditional display --&gt;
+{% if user.is_authenticated %}
+    &lt;p&gt;Welcome back, {{ user.username }}!&lt;/p&gt;
+    &lt;a href="/logout"&gt;Logout&lt;/a&gt;
+{% else %}
+    &lt;a href="/login"&gt;Login&lt;/a&gt;
+    &lt;a href="/register"&gt;Register&lt;/a&gt;
+{% endif %}
+
+&lt;!-- Form with CSRF protection --&gt;
+&lt;form method="POST"&gt;
+    {% csrf_token %}
+    {{ form.as_p }}
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Template inheritance --&gt;
+{% extends "base.html" %}
+
+{% block content %}
+    &lt;h1&gt;My Page Content&lt;/h1&gt;
+{% endblock %}
+
+&lt;!-- Include another template --&gt;
+{% include "partials/navbar.html" %}
+
+&lt;!-- Static files --&gt;
+{% load static %}
+&lt;link rel="stylesheet" href="{% static 'css/style.css' %}"&gt;
+&lt;img src="{% static 'images/logo.png' %}" alt="Logo"&gt;
+
+&lt;!-- URLs --&gt;
+&lt;a href="{% url 'post_detail' post.id %}"&gt;Read More&lt;/a&gt;
+                </pre>
+            </div>
+        </section>
+
+        <!-- 
+        =============================================
+        SECTION 6: SEMANTIC HTML ELEMENTS
+        =============================================
+        -->
+        <section>
+            <h3>6. Semantic HTML Elements</h3>
+            
+            <div class="card">
+                <p>Use semantic elements for better accessibility and SEO:</p>
+                <ul>
+                    <li><code>&lt;header&gt;</code> - Page or section header</li>
+                    <li><code>&lt;nav&gt;</code> - Navigation links</li>
+                    <li><code>&lt;main&gt;</code> - Main content area</li>
+                    <li><code>&lt;article&gt;</code> - Independent content</li>
+                    <li><code>&lt;section&gt;</code> - Thematic grouping</li>
+                    <li><code>&lt;aside&gt;</code> - Sidebar content</li>
+                    <li><code>&lt;footer&gt;</code> - Page or section footer</li>
+                    <li><code>&lt;figure&gt;</code> - Image with caption</li>
+                    <li><code>&lt;figcaption&gt;</code> - Caption for figure</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 
+        =============================================
+        SECTION 7: IMAGES AND MEDIA
+        =============================================
+        -->
+        <section>
+            <h3>7. Images and Media</h3>
+            
+            <div class="card">
+                <h4>Image Example</h4>
+                
+                <!-- Basic image -->
+                <p>Basic image with alt text:</p>
+                <pre>&lt;img src="photo.jpg" alt="Description of image"&gt;</pre>
+                
+                <!-- Figure with caption -->
+                <p>Image with caption:</p>
+                <pre>
+&lt;figure&gt;
+    &lt;img src="photo.jpg" alt="Description"&gt;
+    &lt;figcaption&gt;Photo caption here&lt;/figcaption&gt;
+&lt;/figure&gt;
+                </pre>
+                
+                <!-- Responsive image -->
+                <p>Responsive image:</p>
+                <pre>&lt;img src="photo.jpg" alt="Description" style="max-width: 100%; height: auto;"&gt;</pre>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+    =============================================
+    FOOTER SECTION
+    =============================================
+    -->
+    <footer>
+        <p>&copy; 2024 Day 8 HTML Example. All rights reserved.</p>
+        <p>
+            <a href="/privacy" style="color: #aaa;">Privacy Policy</a> |
+            <a href="/terms" style="color: #aaa;">Terms of Service</a>
+        </p>
+    </footer>
+</body>
+</html>
